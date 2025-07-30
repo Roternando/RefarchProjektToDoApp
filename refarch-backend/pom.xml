@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>de.muenchen.refarch</groupId>
-    <artifactId>refarch-backend</artifactId>
+    <artifactId>ToDoApp-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>refarch-backend</name>
