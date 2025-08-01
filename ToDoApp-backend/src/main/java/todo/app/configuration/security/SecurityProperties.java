@@ -1,6 +1,5 @@
 package todo.app.configuration.security;
 
-import todo.app.configuration.filter.RequestResponseLoggingFilter;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import edu.umd.cs.findbugs.annotations.SuppressMatchType;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.validation.annotation.Validated;
+import todo.app.configuration.filter.RequestResponseLoggingFilter;
 
 /**
  * Properties class that holds configuration data relevant for security mechanisms

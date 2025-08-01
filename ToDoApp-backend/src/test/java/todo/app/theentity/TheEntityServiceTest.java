@@ -5,7 +5,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import todo.app.common.NotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import todo.app.common.NotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 class TheEntityServiceTest {

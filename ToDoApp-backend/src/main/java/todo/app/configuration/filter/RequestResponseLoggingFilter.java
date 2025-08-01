@@ -1,7 +1,5 @@
 package todo.app.configuration.filter;
 
-import todo.app.configuration.security.SecurityProperties;
-import todo.app.security.AuthUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +14,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import todo.app.configuration.security.SecurityProperties;
+import todo.app.security.AuthUtils;
 
 /**
  * This filter logs the username for requests.

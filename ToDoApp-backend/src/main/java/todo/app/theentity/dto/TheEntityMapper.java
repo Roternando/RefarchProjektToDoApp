@@ -1,8 +1,8 @@
 package todo.app.theentity.dto;
 
-import todo.app.theentity.TheEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import todo.app.theentity.TheEntity;
 
 @Mapper
 public interface TheEntityMapper {

@@ -2,8 +2,6 @@ package todo.app.theentity;
 
 import static todo.app.common.ExceptionMessageConstants.MSG_NOT_FOUND;
 
-import todo.app.common.NotFoundException;
-import todo.app.security.Authorities;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import todo.app.common.NotFoundException;
+import todo.app.security.Authorities;
 
 @Service
 @Slf4j

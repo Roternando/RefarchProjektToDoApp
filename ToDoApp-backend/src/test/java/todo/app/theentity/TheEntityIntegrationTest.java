@@ -1,7 +1,5 @@
 package todo.app.theentity;
 
-import static todo.app.TestConstants.SPRING_NO_SECURITY_PROFILE;
-import static todo.app.TestConstants.SPRING_TEST_PROFILE;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -12,10 +10,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static todo.app.TestConstants.SPRING_NO_SECURITY_PROFILE;
+import static todo.app.TestConstants.SPRING_TEST_PROFILE;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import todo.app.TestConstants;
-import todo.app.theentity.dto.TheEntityRequestDTO;
 import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +30,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+import todo.app.TestConstants;
+import todo.app.theentity.dto.TheEntityRequestDTO;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

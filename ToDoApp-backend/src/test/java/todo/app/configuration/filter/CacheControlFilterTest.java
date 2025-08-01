@@ -1,12 +1,10 @@
 package todo.app.configuration.filter;
 
-import static todo.app.TestConstants.SPRING_NO_SECURITY_PROFILE;
-import static todo.app.TestConstants.SPRING_TEST_PROFILE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static todo.app.TestConstants.SPRING_NO_SECURITY_PROFILE;
+import static todo.app.TestConstants.SPRING_TEST_PROFILE;
 
-import todo.app.MicroServiceApplication;
-import todo.app.TestConstants;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +19,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+import todo.app.MicroServiceApplication;
+import todo.app.TestConstants;
 
 @Testcontainers
 @SpringBootTest(

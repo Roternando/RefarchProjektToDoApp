@@ -1,8 +1,5 @@
 package todo.app.theentity;
 
-import todo.app.theentity.dto.TheEntityMapper;
-import todo.app.theentity.dto.TheEntityRequestDTO;
-import todo.app.theentity.dto.TheEntityResponseDTO;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import todo.app.theentity.dto.TheEntityMapper;
+import todo.app.theentity.dto.TheEntityRequestDTO;
+import todo.app.theentity.dto.TheEntityResponseDTO;
 
 @RestController
 @Slf4j

@@ -9,13 +9,13 @@
         <relativePath/>
     </parent>
 
-    <groupId>de.muenchen.refarch</groupId>
+    <groupId>todo.app</groupId>
     <artifactId>ToDoApp-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>refarch-backend</name>
-    <description>This is the default starting project for a backend project based on the reference architecture of it@M</description>
-    <url>https://github.com/it-at-m/refarch-templates</url>
+    <name>ToDoApp-backend</name>
+    <description>Mein Versuch mit der RefArch eine ToDo App auf die Beine zu stellen</description>
+    <url>https://github.com/Roternando/RefarchProjektToDoApp</url>
     <licenses>
         <license>
             <name>MIT</name>
@@ -24,16 +24,16 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/it-at-m/refarch-templates.git</url>
-        <connection>scm:git:https://github.com/it-at-m/refarch-templates.git</connection>
-        <developerConnection>scm:git:https://github.com/it-at-m/refarch-templates.git</developerConnection>
+        <connection>scm:git:https://github.com/Roternando/RefarchProjektToDoApp.git</connection>
+        <developerConnection>scm:https://github.com/Roternando/RefarchProjektToDoApp.git</developerConnection>
+        <url>https://github.com/Roternando/RefarchProjektToDoApp</url>
         <tag>HEAD</tag>
     </scm>
     <developers>
         <developer>
-            <organization>it@M</organization>
-            <email>opensource@muenchen.de</email>
-            <url>https://github.com/it-at-m</url>
+            <name>Roternando</name>
+<!--            <email>opensource@muenchen.de</email>-->
+            <url>https://github.com/Roternando</url>
         </developer>
     </developers>
 

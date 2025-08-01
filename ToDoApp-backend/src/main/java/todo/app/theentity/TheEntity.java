@@ -1,6 +1,5 @@
 package todo.app.theentity;
 
-import todo.app.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import todo.app.common.BaseEntity;
 
 /**
  * This class represents a TheEntity.
