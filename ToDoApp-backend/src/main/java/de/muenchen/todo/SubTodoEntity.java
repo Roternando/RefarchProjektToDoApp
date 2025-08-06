@@ -2,19 +2,20 @@ package de.muenchen.todo;
 
 import de.muenchen.common.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+
 import java.io.Serial;
-import java.util.List;
+
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class TodoEntity extends BaseEntity {
+public class SubTodoEntity extends BaseEntity {
+    @ManyToOne
+    TodoEntity parent;
     @Serial
     private static final long serialVersionUID = 1L;
     private String name;
-    @OneToMany
-    private List<SubTodoEntity> subTodos;
 }

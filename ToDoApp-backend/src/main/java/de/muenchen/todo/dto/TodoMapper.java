@@ -1,13 +1,16 @@
 package de.muenchen.todo.dto;
 
+import de.muenchen.todo.SubTodoEntity;
 import de.muenchen.todo.TodoEntity;
 import org.mapstruct.Mapper;
 
 @Mapper
 public interface TodoMapper {
-    TodoEntity toEntity(TodoDTO dto);
+    TodoEntity toEntity(TodoRequestDTO todoRequestDTO);
 
-    TodoEntity toEntity(CreateTodoDTO createTodoDTO);
+    SubTodoEntity toEntity(SubTodoRequestDTO todoRequestDTO);
 
-    TodoDTO toDTO(TodoEntity entity);
+    TodoResponseDTO toDTO(TodoEntity todoEntity);
+
+    SubTodoResponseDTO toDTO(SubTodoEntity subTodoEntity);
 }
