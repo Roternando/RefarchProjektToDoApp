@@ -1,8 +1,8 @@
 CREATE TABLE sub_todo_entity
 (
-    id        UUID NOT NULL,
-    name      VARCHAR(255),
-    parent_id UUID,
+    id                 UUID NOT NULL,
+    parent_todo_entity UUID,
+    name               VARCHAR(255),
     CONSTRAINT pk_subtodoentity PRIMARY KEY (id)
 );
 
@@ -30,7 +30,7 @@ ALTER TABLE todo_entity_sub_todos
     ADD CONSTRAINT uc_todo_entity_sub_todos_subtodos UNIQUE (sub_todos_id);
 
 ALTER TABLE sub_todo_entity
-    ADD CONSTRAINT FK_SUBTODOENTITY_ON_PARENT FOREIGN KEY (parent_id) REFERENCES todo_entity (id);
+    ADD CONSTRAINT FK_SUBTODOENTITY_ON_PARENTTODOENTITY FOREIGN KEY (parent_todo_entity) REFERENCES todo_entity (id);
 
 ALTER TABLE todo_entity_sub_todos
     ADD CONSTRAINT fk_todentsubtod_on_sub_todo_entity FOREIGN KEY (sub_todos_id) REFERENCES sub_todo_entity (id);

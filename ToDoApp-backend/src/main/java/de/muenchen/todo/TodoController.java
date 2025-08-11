@@ -1,12 +1,9 @@
 package de.muenchen.todo;
 
 import de.muenchen.todo.dto.SubTodoRequestDTO;
+import de.muenchen.todo.dto.SubTodoResponseWithParentDTO;
 import de.muenchen.todo.dto.TodoRequestDTO;
-import de.muenchen.todo.dto.TodoResponseDTO;
-
-import java.util.List;
-import java.util.UUID;
-
+import de.muenchen.todo.dto.TodoResponseWithSubDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/todo")
@@ -25,33 +25,57 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @GetMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.OK)
-    public List<TodoResponseDTO> getAllTodos() {
-        return todoService.getAllTodos();
-    }
-
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public TodoResponseDTO getTodo(@PathVariable final UUID id) {
-        return todoService.getTodo(id);
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public UUID createTodo(@RequestBody final TodoRequestDTO todoRequestDTO) {
+    public TodoResponseWithSubDTO createTodo(@RequestBody final TodoRequestDTO todoRequestDTO) {
         if (todoRequestDTO.name().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         return todoService.createTodo(todoRequestDTO);
     }
 
-    @PostMapping
+    @PostMapping("/sub/create")
     @ResponseStatus(HttpStatus.OK)
-    public UUID createSubTodo(@RequestBody final SubTodoRequestDTO subTodoRequestDTO) {
-        if(subTodoRequestDTO.name().isEmpty()){
+    public SubTodoResponseWithParentDTO createSubTodo(@RequestBody final SubTodoRequestDTO subTodoRequestDTO) {
+        if (subTodoRequestDTO.name().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        return  todoService.createSubToDo(subTodoRequestDTO);
+        return todoService.createSubToDo(subTodoRequestDTO);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public TodoResponseWithSubDTO getTodo(@PathVariable final UUID id) {
+        return todoService.getTodo(id);
+    }
+
+    @GetMapping("/sub/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public SubTodoResponseWithParentDTO getSubTodo(@PathVariable final UUID id) {
+        return todoService.getSubTodo(id);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<TodoResponseWithSubDTO> getAllTodos() {
+        return todoService.getAllTodos();
+    }
+
+    @GetMapping("/sub")
+    @ResponseStatus(HttpStatus.OK)
+    public List<SubTodoResponseWithParentDTO> getAllSubTodo() {
+        return todoService.getAllSubTodos();
+    }
+
+    @PostMapping("/remove")
+    @ResponseStatus(HttpStatus.OK)
+    public void removeAllTodos() {
+        todoService.removeAllTodos();
+    }
+
+    @PostMapping("/sub/remove")
+    @ResponseStatus(HttpStatus.OK)
+    public void removeAllSubTodos() {
+        todoService.removeAllSubTodos();
     }
 }
