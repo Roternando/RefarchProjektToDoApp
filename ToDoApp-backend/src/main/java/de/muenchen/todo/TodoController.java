@@ -4,6 +4,7 @@ import de.muenchen.todo.dto.SubTodoRequestDTO;
 import de.muenchen.todo.dto.SubTodoResponseWithParentDTO;
 import de.muenchen.todo.dto.TodoRequestDTO;
 import de.muenchen.todo.dto.TodoResponseWithSubDTO;
+import de.muenchen.todo.dto.TodoResponseWithoutSubDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +26,22 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @PostMapping("/create")
+    @PostMapping("/createWithSub")
     @ResponseStatus(HttpStatus.OK)
-    public TodoResponseWithSubDTO createTodo(@RequestBody final TodoRequestDTO todoRequestDTO) {
+    public TodoResponseWithSubDTO createTodoWithSubTodo(@RequestBody final TodoRequestDTO todoRequestDTO) {
         if (todoRequestDTO.name().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        return todoService.createTodo(todoRequestDTO);
+        return todoService.createTodoWithSubTodo(todoRequestDTO);
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.OK)
+    public TodoResponseWithoutSubDTO createTodoWithoutSubTodo(@RequestBody final TodoRequestDTO todoRequestDTO) {
+        if (todoRequestDTO.name().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return todoService.createTodoWithoutSubTodo(todoRequestDTO);
     }
 
     @PostMapping("/sub/create")

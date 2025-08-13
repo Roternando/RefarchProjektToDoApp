@@ -5,6 +5,7 @@ import de.muenchen.todo.dto.SubTodoResponseWithParentDTO;
 import de.muenchen.todo.dto.TodoMapper;
 import de.muenchen.todo.dto.TodoRequestDTO;
 import de.muenchen.todo.dto.TodoResponseWithSubDTO;
+import de.muenchen.todo.dto.TodoResponseWithoutSubDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class TodoService {
     private final SubTodoRepository subTodoRepository;
     private final TodoMapper todoMapper;
 
-    public TodoResponseWithSubDTO createTodo(final TodoRequestDTO todoRequestDTO) {
+    public TodoResponseWithSubDTO createTodoWithSubTodo(final TodoRequestDTO todoRequestDTO) {
 
         final TodoEntity todoEntity = todoMapper.toEntity(todoRequestDTO);
 
@@ -34,14 +35,16 @@ public class TodoService {
 
         todoEntity.setSubTodos(subTodoEntities);
         todoRepository.save(todoEntity);
-        subTodoRepository.saveAll(subTodoEntities);
 
         return todoMapper.toTodoResponseWithSubDTO(todoEntity);
     }
 
+    public TodoResponseWithoutSubDTO createTodoWithoutSubTodo(final TodoRequestDTO todoRequestDTO) {
+        return todoMapper.toTodoResponseWithoutSubDTO(todoRepository.save(todoMapper.toEntity(todoMapper.toTodoResponseWithoutSubDTO(todoMapper.toEntity(todoRequestDTO)))));
+    }
+
     public SubTodoResponseWithParentDTO createSubToDo(final SubTodoRequestDTO subTodoRequestDTO) {
-        final SubTodoEntity subTodoEntity = subTodoRepository.save(todoMapper.toEntity(subTodoRequestDTO));
-        return todoMapper.toSubTodoResponseWithParentDTO(subTodoEntity);
+        return todoMapper.toSubTodoResponseWithParentDTO(subTodoRepository.save(todoMapper.toEntity(subTodoRequestDTO)));
     }
 
     public TodoResponseWithSubDTO getTodo(final UUID uuid) {
@@ -63,9 +66,10 @@ public class TodoService {
     }
 
     public List<SubTodoResponseWithParentDTO> getAllSubTodos() {
-        return StreamSupport.stream(subTodoRepository.findAll().spliterator(), false)
+        List<SubTodoResponseWithParentDTO> list = StreamSupport.stream(subTodoRepository.findAll().spliterator(), false)
                 .map(todoMapper::toSubTodoResponseWithParentDTO)
                 .toList();
+        return list;
     }
 
     public void removeAllTodos() {
@@ -73,6 +77,11 @@ public class TodoService {
     }
 
     public void removeAllSubTodos() {
-        subTodoRepository.deleteAll();
+        List<SubTodoEntity> list = StreamSupport.stream(subTodoRepository.findAll().spliterator(), false).toList();
+        for (SubTodoEntity subTodoEntity : list) {
+            if (subTodoEntity.getParentTodoEntity() == null) {
+                subTodoRepository.delete(subTodoEntity);
+            }
+        }
     }
 }

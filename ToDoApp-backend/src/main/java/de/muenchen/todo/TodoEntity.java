@@ -5,10 +5,11 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
-import java.io.Serial;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serial;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,6 +19,6 @@ public class TodoEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;
     private String name;
 
-    @OneToMany(mappedBy = "parentTodoEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentTodoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SubTodoEntity> subTodos;
 }
