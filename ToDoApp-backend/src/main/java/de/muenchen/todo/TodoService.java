@@ -66,10 +66,9 @@ public class TodoService {
     }
 
     public List<SubTodoResponseWithParentDTO> getAllSubTodos() {
-        List<SubTodoResponseWithParentDTO> list = StreamSupport.stream(subTodoRepository.findAll().spliterator(), false)
+        return StreamSupport.stream(subTodoRepository.findAll().spliterator(), false)
                 .map(todoMapper::toSubTodoResponseWithParentDTO)
                 .toList();
-        return list;
     }
 
     public void removeAllTodos() {
@@ -77,11 +76,8 @@ public class TodoService {
     }
 
     public void removeAllSubTodos() {
-        List<SubTodoEntity> list = StreamSupport.stream(subTodoRepository.findAll().spliterator(), false).toList();
-        for (SubTodoEntity subTodoEntity : list) {
-            if (subTodoEntity.getParentTodoEntity() == null) {
-                subTodoRepository.delete(subTodoEntity);
-            }
-        }
+        StreamSupport.stream(subTodoRepository.findAll().spliterator(), false)
+                .filter(subTodoEntity -> subTodoEntity.getParentTodoEntity() == null)
+                .forEach(subTodoRepository::delete);
     }
 }

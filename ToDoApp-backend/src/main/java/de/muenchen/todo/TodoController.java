@@ -7,6 +7,7 @@ import de.muenchen.todo.dto.TodoResponseWithSubDTO;
 import de.muenchen.todo.dto.TodoResponseWithoutSubDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,13 +78,13 @@ public class TodoController {
         return todoService.getAllSubTodos();
     }
 
-    @PostMapping("/remove")
+    @DeleteMapping("/remove")
     @ResponseStatus(HttpStatus.OK)
     public void removeAllTodos() {
         todoService.removeAllTodos();
     }
 
-    @PostMapping("/sub/remove")
+    @DeleteMapping("/sub/remove")
     @ResponseStatus(HttpStatus.OK)
     public void removeAllSubTodos() {
         todoService.removeAllSubTodos();
