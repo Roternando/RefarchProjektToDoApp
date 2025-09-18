@@ -74,7 +74,7 @@ public class TodoController {
 
     @GetMapping("/sub")
     @ResponseStatus(HttpStatus.OK)
-    public List<SubTodoResponseWithParentDTO> getAllSubTodo() {
+    public List<SubTodoResponseWithParentDTO> getAllSubTodos() {
         return todoService.getAllSubTodos();
     }
 

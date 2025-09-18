@@ -6,13 +6,13 @@
 
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-btn>
-          test
-        </v-btn>
-      </v-col>
-    </v-row>
+<!--    <v-row>-->
+    <!--      <v-col>-->
+    <v-btn>
+      test
+    </v-btn>
+<!--      </v-col>-->
+<!--    </v-row>-->
   </v-container>
 </template>
 

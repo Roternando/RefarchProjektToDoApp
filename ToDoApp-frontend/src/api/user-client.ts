@@ -4,7 +4,6 @@ import {
   getConfig,
 } from "@/api/fetch-utils";
 import User from "@/types/User";
-
 /**
  * Retrieves the user data via the userinfo route of the API gateway. The SSO client must be configured so that
  * that the claims offered by Keycloak (see API definition) are correctly delivered in the protocol mapper.

@@ -1,16 +1,9 @@
 import {defaultResponseHandler, getConfig} from "@/api/fetch-utils";
 
-export interface Info {
-    application: Application;
-}
+import type {Todo} from "@/types/Todo.ts";
 
-export interface Application {
-    name: string;
-    version: string;
-}
-
-export function getInfo(): Promise<Info> {
-    return fetch("actuator/info", getConfig())
+export function getAllTodos(): Promise<Todo[]> {
+    return fetch("/api/backend-service/todo", getConfig())
         .then((response) => {
             defaultResponseHandler(response);
             return response.json();

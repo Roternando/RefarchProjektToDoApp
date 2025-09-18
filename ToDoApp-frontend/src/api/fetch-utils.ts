@@ -1,16 +1,16 @@
-import { ApiError } from "@/api/ApiError";
-import { STATUS_INDICATORS } from "@/constants";
+import {ApiError} from "@/api/ApiError";
+import {STATUS_INDICATORS} from "@/constants";
 
 /**
  * Returns a default GET-Config for fetch
  */
 export function getConfig(): RequestInit {
-  return {
-    headers: getHeaders(),
-    mode: "cors",
-    credentials: "same-origin",
-    redirect: "manual",
-  };
+    return {
+        headers: getHeaders(),
+        mode: "cors",
+        credentials: "same-origin",
+        redirect: "manual",
+    };
 }
 
 /**
@@ -19,14 +19,14 @@ export function getConfig(): RequestInit {
  */
 // eslint-disable-next-line
 export function postConfig(body: any): RequestInit {
-  return {
-    method: "POST",
-    body: body ? JSON.stringify(body) : undefined,
-    headers: getHeaders(),
-    mode: "cors",
-    credentials: "same-origin",
-    redirect: "manual",
-  };
+    return {
+        method: "POST",
+        body: body ? JSON.stringify(body) : undefined,
+        headers: getHeaders(),
+        mode: "cors",
+        credentials: "same-origin",
+        redirect: "manual",
+    };
 }
 
 /**
@@ -36,18 +36,18 @@ export function postConfig(body: any): RequestInit {
  */
 // eslint-disable-next-line
 export function putConfig(body: any): RequestInit {
-  const headers = getHeaders();
-  if (body.version) {
-    headers.append("If-Match", body.version);
-  }
-  return {
-    method: "PUT",
-    body: body ? JSON.stringify(body) : undefined,
-    headers,
-    mode: "cors",
-    credentials: "same-origin",
-    redirect: "manual",
-  };
+    const headers = getHeaders();
+    if (body.version) {
+        headers.append("If-Match", body.version);
+    }
+    return {
+        method: "PUT",
+        body: body ? JSON.stringify(body) : undefined,
+        headers,
+        mode: "cors",
+        credentials: "same-origin",
+        redirect: "manual",
+    };
 }
 
 /**
@@ -57,31 +57,31 @@ export function putConfig(body: any): RequestInit {
  */
 // eslint-disable-next-line
 export function patchConfig(body: any): RequestInit {
-  const headers = getHeaders();
-  if (body.version !== undefined) {
-    headers.append("If-Match", body.version);
-  }
-  return {
-    method: "PATCH",
-    body: body ? JSON.stringify(body) : undefined,
-    headers,
-    mode: "cors",
-    credentials: "same-origin",
-    redirect: "manual",
-  };
+    const headers = getHeaders();
+    if (body.version !== undefined) {
+        headers.append("If-Match", body.version);
+    }
+    return {
+        method: "PATCH",
+        body: body ? JSON.stringify(body) : undefined,
+        headers,
+        mode: "cors",
+        credentials: "same-origin",
+        redirect: "manual",
+    };
 }
 
 /**
  * Returns a default DELETE-Config for fetch
  */
 export function deleteConfig(): RequestInit {
-  return {
-    method: "DELETE",
-    headers: getHeaders(),
-    mode: "cors",
-    credentials: "same-origin",
-    redirect: "manual",
-  };
+    return {
+        method: "DELETE",
+        headers: getHeaders(),
+        mode: "cors",
+        credentials: "same-origin",
+        redirect: "manual",
+    };
 }
 
 /**
@@ -95,24 +95,24 @@ export function deleteConfig(): RequestInit {
  * @param errorMessage The error message to be displayed for an HTTP code != 2xx.
  */
 export function defaultResponseHandler(
-  response: Response,
-  errorMessage = "Es ist ein unbekannter Fehler aufgetreten."
+    response: Response,
+    errorMessage = "Es ist ein unbekannter Fehler aufgetreten."
 ): void {
-  if (!response.ok) {
-    if (response.status === 403) {
-      throw new ApiError({
-        level: STATUS_INDICATORS.ERROR,
-        message:
-          "Sie haben nicht die nötigen Rechte um diese Aktion durchzuführen.",
-      });
-    } else if (response.type === "opaqueredirect") {
-      location.reload();
+    if (!response.ok) {
+        if (response.status === 403) {
+            throw new ApiError({
+                level: STATUS_INDICATORS.ERROR,
+                message:
+                    "Sie haben nicht die nötigen Rechte um diese Aktion durchzuführen.",
+            });
+        } else if (response.type === "opaqueredirect") {
+            location.reload();
+        }
+        throw new ApiError({
+            level: STATUS_INDICATORS.WARNING,
+            message: errorMessage,
+        });
     }
-    throw new ApiError({
-      level: STATUS_INDICATORS.WARNING,
-      message: errorMessage,
-    });
-  }
 }
 
 /**
@@ -122,13 +122,13 @@ export function defaultResponseHandler(
  * @param errorMessage The error message to be included in the ApiError object.
  */
 export function defaultCatchHandler(
-  error: Error,
-  errorMessage = "Es ist ein unbekannter Fehler aufgetreten."
+    error: Error,
+    errorMessage = "Es ist ein unbekannter Fehler aufgetreten."
 ): PromiseLike<never> {
-  throw new ApiError({
-    level: STATUS_INDICATORS.WARNING,
-    message: errorMessage,
-  });
+    throw new ApiError({
+        level: STATUS_INDICATORS.WARNING,
+        message: errorMessage,
+    });
 }
 
 /**
@@ -136,14 +136,14 @@ export function defaultCatchHandler(
  * @returns {Headers}
  */
 function getHeaders(): Headers {
-  const headers = new Headers({
-    "Content-Type": "application/json",
-  });
-  const csrfCookie = getXSRFToken();
-  if (csrfCookie !== "") {
-    headers.append("X-XSRF-TOKEN", csrfCookie);
-  }
-  return headers;
+    const headers = new Headers({
+        "Content-Type": "application/json",
+    });
+    const csrfCookie = getXSRFToken();
+    if (csrfCookie !== "") {
+        headers.append("X-XSRF-TOKEN", csrfCookie);
+    }
+    return headers;
 }
 
 /**
@@ -151,8 +151,8 @@ function getHeaders(): Headers {
  * @returns {string|string}
  */
 function getXSRFToken(): string {
-  const help = document.cookie.match(
-    "(^|;)\\s*" + "XSRF-TOKEN" + "\\s*=\\s*([^;]+)"
-  );
-  return (help ? help.pop() : "") as string;
+    const help = document.cookie.match(
+        "(^|;)\\s*" + "XSRF-TOKEN" + "\\s*=\\s*([^;]+)"
+    );
+    return (help ? help.pop() : "") as string;
 }
